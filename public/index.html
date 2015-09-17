@@ -39,7 +39,7 @@
                             $("#message").show();
                         },
                         error: function(err) {
-                            errorMessage.text("Error");
+                            errorMessage.text(err.responseJSON);
                             error.show();
                         }
                     })
