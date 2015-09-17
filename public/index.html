@@ -39,7 +39,8 @@
                             $("#message").show();
                         },
                         error: function(err) {
-
+                            errorMessage.text("Error");
+                            error.show();
                         }
                     })
             });
