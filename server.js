@@ -13,19 +13,14 @@ app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        conn.query(
-            'UPDATE salesforce.Contact SET Email = $1 WHERE LOWER(Email) = "motorr79@hotmail.com"',
-            [req.body.email.trim()],
-            function(err, result) {
-                if (err != null || result.rowCount == 0) {
-                console.log('error')
-                }
-                else {
-                    done();
-                    res.json(result);
-                }
-            }
-        );
+        conn.sobject("Contact").update({ 
+                Id : '003U0000001WrkhIAC',
+                Email : 'yosdf.ds@ad.com'
+            }, function(err, ret) {
+            if (err || !ret.success) { return console.error(err, ret); }
+            console.log('Updated Successfully : ' + ret.id);
+                // ...
+            });
     });
 });
 
